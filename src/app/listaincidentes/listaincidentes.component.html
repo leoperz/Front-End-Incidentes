@@ -1,0 +1,203 @@
+<div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3>Lista de Incidentes</h3>
+            </div>
+
+            <ul class="list-unstyled components">
+                <p>Estados posibles</p>
+                <li>
+                    <a (click)="clickAbiertos()" data-toggle="collapse" aria-expanded="false">Abiertos</a>
+                   
+                </li>
+                <li>
+                    <a (click)="clickCerrados()">Cerrados</a>
+                </li>
+                <li>
+                    <a (click)="clickAsignados()" data-toggle="collapse" aria-expanded="false">Asignados</a>
+                   
+                </li>
+                <li>
+                    <a (click)="clickResueltos()">Resueltos</a>
+                </li>
+                
+            </ul>
+
+            <ul class="list-unstyled CTAs">
+                <li>
+                    <a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">Download source</a>
+                </li>
+                <li>
+                    <a href="https://bootstrapious.com/p/bootstrap-sidebar" class="article">Back to article</a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Page Content  -->
+        <div id="content">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+
+                    <button type="button" id="sidebarCollapse" class="btn btn-info">
+                        <i class="fa fa-align-left"></i>
+                        <span>Menu Lateral</span>
+                    </button>
+                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-align-justify"></i>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#">Page</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Page</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Page</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Page</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <div *ngIf="flagClickAbiertos">
+
+            <!--Tabla que arma la lista de incidentes nuevos-->
+
+            <table *ngIf="flagAbiertos; else emptyTable" class="table table-dark">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Numero Sprint</th>
+                        <th scope="col">Titulo Sprint</th>
+                        <th scope="col">Descripcion</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Fecha de Alta</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of incidentesAbiertos(); index as i">
+                        <th scope="row">{{i+1}}</th>
+                        <td>{{item.numeroSprint}}</td>
+                        <td>{{item.tituloSprint}}</td>
+                        <td>{{item.descripcion}}</td>
+                        <td>{{item.estado}}</td>
+                        <td>{{item.fechaAlta.day}}/{{item.fechaAlta.month}}/{{item.fechaAlta.year}}</td>
+
+                    </tr>
+                </tbody>
+            </table>
+            <ng-template #emptyTable>No existen incidentes nuevos</ng-template>
+
+        </div>
+
+        <div *ngIf="flagClickCerrados">
+
+        
+            <!--Tabla que arma la lista de incidentes cerrados-->
+
+            <table *ngIf="flagCerrados; else emptyTable" class="table table-dark">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Numero Sprint</th>
+                            <th scope="col">Titulo Sprint</th>
+                            <th scope="col">Descripcion</th>
+                            <th scope="col">Estado</th>
+                            <th scope="col">Fecha de Alta</th>
+    
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of incidentesCerrados(); index as i">
+                            <th scope="row">{{i+1}}</th>
+                            <td>{{item.numeroSprint}}</td>
+                            <td>{{item.tituloSprint}}</td>
+                            <td>{{item.descripcion}}</td>
+                            <td>{{item.estado}}</td>
+                            <td>{{item.fechaAlta.day}}/{{item.fechaAlta.month}}/{{item.fechaAlta.year}}</td>
+    
+                        </tr>
+                    </tbody>
+                </table>
+                <ng-template #emptyTable>No existen incidentes cerrados</ng-template>
+            </div>
+
+
+
+            <div *ngIf="flagClickAsignados">
+                <!--Tabla que arma la lista de incidentes asignados-->
+
+            <table *ngIf="flagAsignados; else emptyTable" class="table table-dark">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Numero Sprint</th>
+                            <th scope="col">Titulo Sprint</th>
+                            <th scope="col">Descripcion</th>
+                            <th scope="col">Estado</th>
+                            <th scope="col">Fecha de Alta</th>
+    
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of incidentesAsignados(); index as i">
+                            <th scope="row">{{i+1}}</th>
+                            <td>{{item.numeroSprint}}</td>
+                            <td>{{item.tituloSprint}}</td>
+                            <td>{{item.descripcion}}</td>
+                            <td>{{item.estado}}</td>
+                            <td>{{item.fechaAlta.day}}/{{item.fechaAlta.month}}/{{item.fechaAlta.year}}</td>
+    
+                        </tr>
+                    </tbody>
+                </table>
+
+                <ng-template #emptyTable>No existen incidentes asignados</ng-template>
+                </div>
+
+
+            <div *ngIf="flagClickResueltos">
+                <!--Tabla que arma la lista de incidentes resultos-->
+
+            <table *ngIf="flagResuelto; else emptyTable" class="table table-dark">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Numero Sprint</th>
+                            <th scope="col">Titulo Sprint</th>
+                            <th scope="col">Descripcion</th>
+                            <th scope="col">Estado</th>
+                            <th scope="col">Fecha de Alta</th>
+    
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of incidentesResueltos(); index as i">
+                            <th scope="row">{{i+1}}</th>
+                            <td>{{item.numeroSprint}}</td>
+                            <td>{{item.tituloSprint}}</td>
+                            <td>{{item.descripcion}}</td>
+                            <td>{{item.estado}}</td>
+                            <td>{{item.fechaAlta.day}}/{{item.fechaAlta.month}}/{{item.fechaAlta.year}}</td>
+    
+                        </tr>
+                    </tbody>
+                </table>
+                <ng-template #emptyTable><h1>No existen incidentes resueltos</h1></ng-template>
+                </div>
+            
+
+            <div class="line"></div>
+
+            
+        </div>
+    </div>

@@ -1,0 +1,148 @@
+<div class="central" *ngIf=identity>
+
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+                <div class="container">
+                  <a class="navbar-brand" href="#page-top">BIP SUCURSALES</a>
+                  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars"></i>
+                  </button>
+                  <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav text-uppercase ml-auto">
+                      <li class="nav-item">
+                        <a class="nav-link" href="#services">Incidentes</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#portfolio">DASHBOARD</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#about">MI PERFIL</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#team">ESTADISTICAS</a>
+                      </li>
+                      
+                    </ul>
+                  </div>
+                </div>
+              </nav>
+            
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+
+
+            <h1 style="color: white; text-align: center">BIENVENID@ {{usuarioLogueado}}</h1>
+           
+     
+</div>
+
+
+<div *ngIf="!identity" class="container">
+
+    <div class="row">
+
+    <div class="col">
+
+
+
+<div class="card card-outline-secondary">
+    <div class="card-header">
+        <h3 class="mb-0">Identificate</h3>
+    </div>
+    <div class="card-body">
+        <form class="form" [formGroup]="form" (ngSubmit)="loginUsuario(form.value)">
+            <div class="form-group">
+                <label>E-Mail</label>
+                <input type="text" class="form-control" formControlName="mail">
+                <div class="alert" *ngIf="!form.controls['mail'].valid && form.controls['mail'].touched">Por favor ingrese su e-mail</div>
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" class="form-control" formControlName="password">
+                <div class="alert" *ngIf="!form.controls['password'].valid && form.controls['password'].touched">Por favor ingrese su clave</div>
+            </div>
+            <div class="form-check small">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input"> <span>Recordarme en esta computadora</span>
+                </label>
+            </div>
+            <button type="submit" class="btn btn-success btn-lg float-right"[disabled]="!form.valid">Login</button>
+        </form>
+    </div>
+    <!--/card-body-->
+</div>
+
+</div>
+
+<div class="col">
+
+    <div class="card card-outline-secondary">
+        <div class="card-header">
+            <h3 class="mb-0">Registrate</h3>
+        </div>
+        <div class="card-body">
+            <form class="form" [formGroup]="form2" (ngSubmit)="guardarUsuario(form2.value)">
+                <div class="form-group">
+                    <label>Nombre</label>
+                    <input type="text" class="form-control" formControlName="nombre">
+                    <div class="alert" *ngIf="!form2.controls['nombre'].valid && form2.controls['nombre'].touched">Por favor ingrese su nombre</div>
+                </div>
+                <div class="form-group">
+                    <label>Apellido</label>
+                    <input type="text" class="form-control" formControlName="apellido">
+                    <div class="alert" *ngIf="!form2.controls['apellido'].valid && form2.controls['apellido'].touched">Por favor ingrese su apellido</div>
+                </div>
+                <div class="form-group">
+                    <label>E-mail</label>
+                    <input type="text" class="form-control" formControlName="mail">
+                    <div class="alert" *ngIf="!form2.controls['mail'].valid && form2.controls['mail'].touched">Por favor ingrese su e-mail</div>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="text" class="form-control" formControlName="password">
+                    <div class="alert" *ngIf="!form2.controls['password'].valid && form2.controls['password'].touched">Por favor ingrese su contraseña</div>
+                </div>
+
+                <div class="form-group">
+                    <label>Rol</label>
+                    <input type="text" class="form-control" formControlName="rol">
+                    <div class="alert" *ngIf="!form2.controls['rol'].valid && form2.controls['rol'].touched">Por favor ingrese su contraseña</div>
+                </div>
+
+                <div class="form-group">
+                    <label>Tecnologia</label>
+                    <select></select>
+                    <input type="text" class="form-control" formControlName="tecnologia">
+                    <div class="alert" *ngIf="!form2.controls['tecnologia'].valid && form2.controls['tecnologia'].touched">Por favor ingrese su contraseña</div>
+                </div>
+               
+                <div class="form-check small">
+                    <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input"> <span>Remember me on this computer</span>
+                    </label>
+                </div>
+                <button type="submit" 
+                class="btn btn-success btn-lg float-right"
+                [disabled]="!form2.valid">Aceptar</button>
+            </form>
+        </div>
+        <!--/card-body-->
+    </div>
+
+
+</div>
+
+        </div>
+    </div>  
+
+
+

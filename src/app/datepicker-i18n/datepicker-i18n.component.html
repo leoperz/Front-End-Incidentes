@@ -1,0 +1,22 @@
+<div [(ngModel)]="language" ngbRadioGroup>
+    <label class="btn btn-primary">
+      <input type="radio" value="en"> English
+    </label>
+    <label class="btn btn-primary">
+      <input type="radio" value="fr"> Français
+    </label>
+  </div>
+  <hr>
+  
+  <form class="form-inline">
+    <div class="form-group">
+      <div class="input-group">
+        <input class="form-control" placeholder="yyyy-mm-dd"
+               name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
+        <div class="input-group-addon" (click)="d.toggle()" >
+          <img  style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
+        </div>
+      </div>
+    </div>
+  </form>
+  
