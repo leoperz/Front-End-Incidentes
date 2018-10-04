@@ -10,6 +10,7 @@ import {NgbdModalContent} from './inicio/inicio.component';
 import { IncidenteComponent } from './incidente/incidente.component';
 import { ListaincidentesComponent } from './listaincidentes/listaincidentes.component';
 import { PerfilComponent } from './perfil/perfil.component';
+import {NgMultiSelectDropDownModule} from 'ng-multiselect-dropdown';
 
 
 
@@ -30,7 +31,8 @@ import { PerfilComponent } from './perfil/perfil.component';
     FormsModule,
     HttpModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+    NgMultiSelectDropDownModule.forRoot()
 
    
   ],
