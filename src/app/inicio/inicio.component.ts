@@ -37,7 +37,8 @@ export class NgbdModalContent {
   styleUrls: ['./inicio.component.css']
 })
 export class InicioComponent implements OnInit {
- 
+ dropdownList = [];
+ dropdownSettings = {};
  closeResult:string;
  form: FormGroup;
  form2:FormGroup;
@@ -65,6 +66,13 @@ export class InicioComponent implements OnInit {
     });}
 
     ngOnInit(): void {
+      this.dropdownList = [
+        { item_id: 1, item_text: 'Front-End' },
+        { item_id: 2, item_text: 'Back-End' },
+        { item_id: 3, item_text: 'MuleSoft' },
+        { item_id: 4, item_text: 'Cobol' },
+        
+      ];
     this.identity= this._ls.getIdentity();
     this.token= this._ls.getToken();
     if(this.identity){
@@ -72,6 +80,19 @@ export class InicioComponent implements OnInit {
       
     }
   }
+
+
+  //funciones del multi-select
+
+  onItemSelect (item:any) {
+    console.log(item);
+  }
+
+  onSelectAll (items: any) {
+    console.log(items);
+  }
+
+
 
   // funciones del modal
 

@@ -120,8 +120,14 @@
 
                 <div class="form-group">
                     <label>Tecnologia</label>
-                    <select></select>
-                    <input type="text" class="form-control" formControlName="tecnologia">
+                   
+                    <ng-multiselect-dropdown
+                    [placeholder]="'seleccione una o mas'"
+                    [data]="dropdownList"
+                    [settings]="dropdownSettings"
+                    (onSelect)="onItemSelect($event)"
+                    (onSelectAll)="onSelectAll($event)">
+                    </ng-multiselect-dropdown>
                     <div class="alert" *ngIf="!form2.controls['tecnologia'].valid && form2.controls['tecnologia'].touched">Por favor ingrese su contraseña</div>
                 </div>
                
