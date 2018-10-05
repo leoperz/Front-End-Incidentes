@@ -7,9 +7,10 @@ export class Usuario{
     private apellido: string;
     private mail: string;
     private rol: string;
-    private tecnologia: string;
+    private tecnologia: Array<string>;
     private imagen: string;
-    private password: string
+    private password: string;
+    private interno:string;
     
     constructor(){
 
@@ -35,7 +36,7 @@ export class Usuario{
     }
 
 
-    setTecnologia(tecnologia:string):void{
+    setTecnologia(tecnologia:Array<string>){
         this.tecnologia=tecnologia;
     }
 
@@ -54,7 +55,9 @@ export class Usuario{
         this.id=id;
     }
 
-
+    setInterno(interno:string):void{
+        this.interno=interno;
+    }
 
 
 

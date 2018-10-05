@@ -10,16 +10,16 @@
                   <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ml-auto">
                       <li class="nav-item">
-                        <a class="nav-link" href="#services">Incidentes</a>
+                        <a class="nav-link" href="">Incidentes</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="#portfolio">DASHBOARD</a>
+                        <a class="nav-link" href="">DASHBOARD</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="#about">MI PERFIL</a>
+                        <a class="nav-link js-scroll-trigger" href="">MI PERFIL</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="#team">ESTADISTICAS</a>
+                        <a class="nav-link js-scroll-trigger" href="">ESTADISTICAS</a>
                       </li>
                       
                     </ul>
@@ -108,7 +108,7 @@
                 </div>
                 <div class="form-group">
                     <label>Password</label>
-                    <input type="text" class="form-control" formControlName="password">
+                    <input type="password" class="form-control" formControlName="password">
                     <div class="alert" *ngIf="!form2.controls['password'].valid && form2.controls['password'].touched">Por favor ingrese su contraseña</div>
                 </div>
 
@@ -121,14 +121,20 @@
                 <div class="form-group">
                     <label>Tecnologia</label>
                    
-                    <ng-multiselect-dropdown
+                    <ng-multiselect-dropdown formControlName="tecnologia"
                     [placeholder]="'seleccione una o mas'"
                     [data]="dropdownList"
+                    [(ngModel)]="selectedItems"
                     [settings]="dropdownSettings"
-                    (onSelect)="onItemSelect($event)"
-                    (onSelectAll)="onSelectAll($event)">
+                    >
                     </ng-multiselect-dropdown>
-                    <div class="alert" *ngIf="!form2.controls['tecnologia'].valid && form2.controls['tecnologia'].touched">Por favor ingrese su contraseña</div>
+                    
+                </div>
+
+                <div class="form-group">
+                    <label>Numero de interno</label>
+                    <input type="text" class="form-control" formControlName="interno">
+                    
                 </div>
                
                 <div class="form-check small">

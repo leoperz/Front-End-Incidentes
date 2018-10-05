@@ -18,7 +18,7 @@ import {NgMultiSelectDropDownModule} from 'ng-multiselect-dropdown';
 @NgModule({
   declarations: [
     AppComponent,
-    InicioComponent,
+     InicioComponent,
     NgbdModalContent,
     IncidenteComponent,
     ListaincidentesComponent,
@@ -27,12 +27,14 @@ import {NgMultiSelectDropDownModule} from 'ng-multiselect-dropdown';
   ],
   
   imports: [
+    NgMultiSelectDropDownModule.forRoot(),
     BrowserModule,
     FormsModule,
     HttpModule,
     ReactiveFormsModule,
-    NgbModule,
-    NgMultiSelectDropDownModule.forRoot()
+    NgbModule
+    
+
 
    
   ],

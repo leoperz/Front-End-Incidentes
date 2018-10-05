@@ -40,16 +40,19 @@ export class InicioComponent implements OnInit {
  dropdownList = [];
  dropdownSettings = {};
  closeResult:string;
+ selectedItems : [string];
  form: FormGroup;
  form2:FormGroup;
  titulo: string ="BSIncidentes";
  usuarioLogueado: any;
  identity:any;
- token:string ="pepe";
+ token:any;
 
 
   constructor(private _db : DatabaseService, private fb: FormBuilder,
                 private _ls : LocalstorageService, public modal: NgbModal) { 
+      
+        
 
       this.form = fb.group({
       'mail':[null, Validators.compose([Validators.required, Validators.email])],
@@ -61,7 +64,8 @@ export class InicioComponent implements OnInit {
       'mail':[null, Validators.compose([Validators.email, Validators.required])],
       'password':[null, Validators.compose([Validators.required])],
       'rol': [null, Validators.compose([Validators.required])],
-      'tecnologia': [null, Validators.compose([Validators.required])]
+      'tecnologia': [null],
+      'interno':[null]
 
     });}
 
@@ -73,28 +77,28 @@ export class InicioComponent implements OnInit {
         { item_id: 4, item_text: 'Cobol' },
         
       ];
+
+      this.dropdownSettings = {
+        singleSelection: false,
+        idField: 'item_id',
+        textField: 'item_text',
+        selectAllText: 'Todos',
+        unSelectAllText: 'Ninguno',
+        itemsShowLimit: 4,
+        allowSearchFilter: true,
+        searchPlaceholderText:"Buscar"
+      };
+
+
     this.identity= this._ls.getIdentity();
     this.token= this._ls.getToken();
     if(this.identity){
+      console.log(this.identity.nombre);
       this.usuarioLogueado = this.identity.nombre;
-      
     }
+    
   }
-
-
-  //funciones del multi-select
-
-  onItemSelect (item:any) {
-    console.log(item);
-  }
-
-  onSelectAll (items: any) {
-    console.log(items);
-  }
-
-
-
-  // funciones del modal
+ // funciones del modal
 
   
 private open(mensaje){
@@ -130,7 +134,7 @@ private open(mensaje){
       //crear el elemento en el local storage
         
         localStorage.setItem('identity',JSON.stringify(this.identity) )
-
+        this.usuarioLogueado=this.identity.nombre;
       //conseguir el token para enviarselo al MD de cada peticion
              this._db.loginUsuario(usuario, 'true').subscribe(
               res  =>{
@@ -147,7 +151,7 @@ private open(mensaje){
               }
    
          //crear el elemento en el local storage
-           localStorage.setItem('token',this.token); 
+           localStorage.setItem('token', JSON.stringify(this.token)); 
            console.log("creo el token en el local storage", this.token);  
           
    
@@ -172,20 +176,25 @@ private open(mensaje){
    
   }
 
-
-
+  
   guardarUsuario(form:any):void{
     let usuario = new Usuario();
+    let aux = [];
     usuario.setNombre(form.nombre);
     usuario.setApellido(form.apellido);
     usuario.setMail(form.mail);
     usuario.setPassword(form.password);
     usuario.setRol(form.rol);
-    usuario.setTecnologia(form.tecnologia);
+    this.selectedItems.forEach((element:any) => {
+      aux.push(element.item_text);
+    });
+    usuario.setTecnologia(aux);
+    
     this._db.guardarUsuario(usuario).subscribe(
 
       res=>{
-        console.log('se ha registrado al usuario' ,res.mail)
+        this.open('se dado de alta: '+res.usuario.mail);
+        
         this.form2.reset();
       },
       error=>{
