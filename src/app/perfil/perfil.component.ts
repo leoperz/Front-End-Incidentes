@@ -14,18 +14,37 @@ export class PerfilComponent implements OnInit {
   token:any;
   url = 'http://localhost:3977/api/';
   urlGetImagen = 'http://localhost:3977/api/getImagen/';
-  
+  dropdownList = [];
+  dropdownSettings = {};
+  selectedItems : [string];
   constructor(private ls:LocalstorageService) {
     this.identity = ls.getIdentity();
     this.token = ls.getToken();
+    
     
    }
 
    ngOnInit(): void {
     
-    $(document).ready(function() {
-      $('.mdb-select').material_select();
-  });
+    this.dropdownList = [
+      { item_id: 1, item_text: 'Front-End' },
+      { item_id: 2, item_text: 'Back-End' },
+      { item_id: 3, item_text: 'MuleSoft' },
+      { item_id: 4, item_text: 'Cobol' },
+      
+    ];
+
+    this.dropdownSettings = {
+      singleSelection: false,
+      idField: 'item_id',
+      textField: 'item_text',
+      selectAllText: 'Todos',
+      unSelectAllText: 'Ninguno',
+      itemsShowLimit: 4,
+      allowSearchFilter: true,
+      searchPlaceholderText:"Buscar"
+    };
+   
   }
 
   
