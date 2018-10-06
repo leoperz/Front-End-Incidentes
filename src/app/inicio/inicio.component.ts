@@ -122,8 +122,8 @@ private open(mensaje){
  public loginUsuario(form:any):void{
    
   let usuario = new Usuario();
-  usuario.setMail(form.mail);
-  usuario.setPassword(form.password);
+  usuario.mail = form.mail;
+  usuario.password=form.password;
    
   
    this._db.loginUsuario(usuario).subscribe(
@@ -180,15 +180,16 @@ private open(mensaje){
   guardarUsuario(form:any):void{
     let usuario = new Usuario();
     let aux = [];
-    usuario.setNombre(form.nombre);
-    usuario.setApellido(form.apellido);
-    usuario.setMail(form.mail);
-    usuario.setPassword(form.password);
-    usuario.setRol(form.rol);
+    usuario.nombre=form.nombre;
+    usuario.apellido=form.apellido;
+    usuario.mail=form.mail;
+    usuario.password=form.password;
+    usuario.rol=form.rol;
+    usuario.imagen="sinfoto.png";
     this.selectedItems.forEach((element:any) => {
       aux.push(element.item_text);
     });
-    usuario.setTecnologia(aux);
+    usuario.tecnologia=aux;
     
     this._db.guardarUsuario(usuario).subscribe(
 

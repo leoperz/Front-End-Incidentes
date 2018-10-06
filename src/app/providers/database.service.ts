@@ -38,9 +38,10 @@ export class DatabaseService {
 
 
    actualizarUsuario(usuario){
+     
     let json = JSON.stringify(usuario);
     let headers = new Headers({'Content-Type':'application/json','Authorization':this.ls.getToken()});
-    return this._http.put(this.url+'actualizar/'+usuario._id, json, {headers:headers}).
+    return this._http.put(this.url+'actualizar/'+usuario.id, json, {headers:headers}).
     pipe(map(res=>res.json()));
    }
 
