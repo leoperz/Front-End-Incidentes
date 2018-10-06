@@ -87,7 +87,7 @@ export class PerfilComponent implements OnInit {
   }
 
   //como se modifica el usuario es necesario volver a crear en el localstorage
-  //el identity y el token. Hay que realizar un Login por atras.
+  //el identity y el token.
   actualizarUsuario(form:any){
     let usuario = new Usuario();
     let aux = [];
@@ -97,18 +97,23 @@ export class PerfilComponent implements OnInit {
     usuario.interno=form.interno;
     usuario.rol=form.rol;
     usuario.id=this.identity._id;
+    usuario.imagen=this.identity.imagen;
     this.selectedItems.forEach((element:any) => {
       aux.push(element.item_text);
     });
     
     usuario.tecnologia=aux;
     
+    
     this.db.actualizarUsuario(usuario).subscribe(
       res=>{
+        this.actualizarLocalStorage(usuario);
         this.open("se ha actualizado el usuario correctamente")
+
       },
       error=>{
         this.open("ha ocurrido un error de servidor");
+        console.log(error);
       }
     );
   }
@@ -158,7 +163,11 @@ export class PerfilComponent implements OnInit {
     });
   }
 
- 
+ private actualizarLocalStorage(usuario:Usuario){
+   localStorage.removeItem('identity');
+   localStorage.setItem('identity',JSON.stringify(usuario));
+  
+ }
 
 
 }
